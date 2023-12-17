@@ -12,3 +12,11 @@ Here are some ideas to get you started:
 - 📫 How to reach me: ...
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
+
+<script>
+function myFunction() {
+    alert("Hello, world!");
+}
+</script>
+
+<button onclick="myFunction()">클릭하세요</button>
