@@ -3,5 +3,5 @@
 - Algorithm
 - DataStructure
 - Language
-  - [CPP](./Language/CPP/)
+  - [CPP](./Language/CPP/cpp.md)
   - Python
