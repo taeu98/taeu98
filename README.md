@@ -3,6 +3,5 @@
 - Algorithm
 - DataStructure
 - Language
-  - CPP
-    - [test.cpp](./Language/CPP/test.cpp)
+  - [CPP](./Language/CPP/)
   - Python
