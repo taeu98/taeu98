@@ -1,3 +1,3 @@
 # TAEU98
 ### DataStructure
-- [LinkedList](./index.md)
+- [LinkedList](./LinkedList/index.md)
