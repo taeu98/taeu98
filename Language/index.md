@@ -1,5 +1,5 @@
 # TAEU98
-### [BACK](../READ.md)
+### [BACK](../README.md)
 ### Language
 - [CPP](./CPP/index.md)
 - [Python](./Python/index.md)

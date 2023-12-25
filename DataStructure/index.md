@@ -1,4 +1,4 @@
 # TAEU98
-### [BACK](../READ.md)
+### [BACK](../README.md)
 ### DataStructure
 - [LinkedList](./LinkedList/index.md)
