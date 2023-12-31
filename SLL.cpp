@@ -109,15 +109,15 @@ int main()
 
     cout << "INSERT FRONT" << endl;
     S->insert_front(0);
-    S->insert_front(1);
-    S->insert_front(2);
-    S->insert_front(3);
+    S->insert_front(-1);
+    S->insert_front(-2);
+    S->insert_front(-3);
     S->display();
 
     cout << "INSERT BACK" << endl;
-    S->insert_back(-1);
-    S->insert_back(-2);
-    S->insert_back(-3);
+    S->insert_back(1);
+    S->insert_back(2);
+    S->insert_back(3);
     S->display();
 
     cout << "DELETE FRONT" << endl;

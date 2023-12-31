@@ -110,15 +110,15 @@ int main()
 
     cout << "INSERT FRONT" << endl;
     D->insert_front(0);
-    D->insert_front(1);
-    D->insert_front(2);
-    D->insert_front(3);
+    D->insert_front(-1);
+    D->insert_front(-2);
+    D->insert_front(-3);
     D->display();
 
     cout << "INSERT BACK" << endl;
-    D->insert_back(-1);
-    D->insert_back(-2);
-    D->insert_back(-3);
+    D->insert_back(1);
+    D->insert_back(2);
+    D->insert_back(3);
     D->display();
 
     cout << "DELETE FRONT" << endl;
