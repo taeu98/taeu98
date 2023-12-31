@@ -32,14 +32,14 @@ int main()
 {
     Queue *V = new Queue();
 
-    cout << "INSERT FRONT" << endl;
+    cout << "Enqueue" << endl;
     V->enqueue(0);
     V->enqueue(-1);
     V->enqueue(-2);
     V->enqueue(-3);
     V->display();
 
-    cout << "DELETE BACK" << endl;
+    cout << "Dequeue" << endl;
     V->dequeue();
     V->display();
 
