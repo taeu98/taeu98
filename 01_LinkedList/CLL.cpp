@@ -120,24 +120,24 @@ int main()
 {
     CircularLinkedList *C = new CircularLinkedList();
 
-    cout << "INSERT FRONT" << endl;
+    cout << "INSERT NEXT" << endl;
     C->insert_next(0);
     C->insert_next(-1);
     C->insert_next(-2);
     C->insert_next(-3);
     C->display();
 
-    cout << "INSERT BACK" << endl;
+    cout << "INSERT PREV" << endl;
     C->insert_prev(1);
     C->insert_prev(2);
     C->insert_prev(3);
     C->display();
 
-    cout << "DELETE FRONT" << endl;
+    cout << "DELETE NEXT" << endl;
     C->delete_next();
     C->display();
 
-    cout << "DELETE BACK" << endl;
+    cout << "DELETE PREV" << endl;
     C->delete_prev();
     C->display();
 
