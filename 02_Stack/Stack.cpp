@@ -2,11 +2,12 @@
 #include <vector>
 using namespace std;
 
-vector<int> v = vector<int>();
-
 /* Class Stack */
 class Stack
 {
+private:
+    vector<int> v = vector<int>();
+
 public:
     ~Stack();
     int size();
