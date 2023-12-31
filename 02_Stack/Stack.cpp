@@ -7,11 +7,7 @@ vector<int> v = vector<int>();
 /* Class Stack */
 class Stack
 {
-private:
-    int cur;
-
 public:
-    Stack();
     ~Stack();
     int size();
     void display();
@@ -20,7 +16,6 @@ public:
     void pop();
 };
 
-Stack::Stack() { cur = 0; }
 Stack::~Stack() { clear(); }
 int Stack::size() { return v.size(); }
 void Stack::display()
