@@ -2,127 +2,301 @@
 #include <queue>
 using namespace std;
 
-class node
+struct Node
 {
-public:
     int data;
-    node *parent;
-    node *left;
-    node *right;
-    node(int data)
-    {
-        this->data = data;
-        this->parent = NULL;
-        this->left = NULL;
-        this->right = NULL;
-    }
+    Node *parent;
+    Node *left;
+    Node *right;
 };
 
-class BinarySearchTree
+class binarySearchTree
 {
+private:
+    Node *root;
+
 public:
-    node *root;
-    BinarySearchTree();
-    ~BinarySearchTree();
-    void Display(node *root);
-    void DFS(node *root);
-    void BFS(node *root);
+    binarySearchTree() { root = nullptr; }
+    
+    Node *getRoot();
+    Node *find(int data);
     void insert(int data);
+    void swap(Node *a, Node *b);
+    void erase(int data);
+    void erase(Node *data);
+    void print(Node *node);
+    void DFS(Node *node);
+    void BFS(Node *node);
 };
+Node *binarySearchTree::getRoot() { return root; }
 
-BinarySearchTree::BinarySearchTree()
+Node *binarySearchTree::find(int data)
 {
-    root = NULL;
+    Node *cur = root;
+    if (cur == nullptr)
+        return nullptr;
+
+    while (1)
+    {
+        while (cur->data > data)
+            cur = cur->left;
+
+        while (cur->data <= data)
+        {
+            if (cur->data == data)
+                return cur;
+            cur = cur->right;
+        }
+
+        if (cur == nullptr)
+            return nullptr;
+    }
 }
-BinarySearchTree::~BinarySearchTree()
+
+void binarySearchTree::insert(int data)
 {
-    delete root;
-}
-void BinarySearchTree::Display(node *root)
-{
-    if (root == NULL)
+    Node *new_node = new Node;
+    if (root == nullptr)
+    {
+        new_node->data = data;
+        new_node->parent = nullptr;
+        new_node->left = nullptr;
+        new_node->right = nullptr;
+        root = new_node;
         return;
-    Display(root->left);
-    cout << root->data << " ";
-    Display(root->right);
+    }
+
+    Node *cur = root;
+    while (1)
+    {
+        while (cur->data > data)
+        {
+            if (cur->left == nullptr)
+            {
+                new_node->data = data;
+                new_node->parent = cur;
+                new_node->left = nullptr;
+                new_node->right = nullptr;
+                cur->left = new_node;
+                return;
+            }
+            else
+                cur = cur->left;
+        }
+        while (cur->data <= data)
+        {
+            if (cur->right == nullptr)
+            {
+                new_node->data = data;
+                new_node->parent = cur;
+                new_node->left = nullptr;
+                new_node->right = nullptr;
+                cur->right = new_node;
+                return;
+            }
+            else
+                cur = cur->right;
+        }
+    }
 }
-void BinarySearchTree::DFS(node *root)
+
+void binarySearchTree::swap(Node *a, Node *b)
 {
-    if (root == NULL)
-        return;
-    cout << root->data << " ";
-    DFS(root->left);
-    DFS(root->right);
+    Node *tmp = new Node;
+    if (a->parent->left == a)
+        a->parent->left = b;
+    else
+        a->parent->right = b;
+
+    if (b->parent->left == b)
+        b->parent->left = a;
+    else
+        b->parent->right = a;
+
+    tmp->data = b->data;
+    b->data = a->data;
+    a->data = tmp->data;
+
+    tmp->parent = b->parent;
+    b->parent = a->parent;
+    a->parent = tmp->parent;
+
+    tmp->left = b->left;
+    b->left = a->left;
+    a->left = tmp->left;
+
+    tmp->right = b->right;
+    b->right = a->right;
+    a->right = tmp->right;
+
+    delete (tmp);
 }
-void BinarySearchTree::BFS(node *root)
+
+void binarySearchTree::erase(int data)
 {
-    if (root == NULL)
+    Node *delNode = find(data);
+    if (delNode == nullptr)
         return;
-    queue<node *> q;
-    q.push(root);
+
+    if (delNode->left == nullptr && delNode->right == nullptr)
+    {
+        if (delNode->parent->left == delNode)
+            delNode->parent->left = nullptr;
+        else
+            delNode->parent->right = nullptr;
+    }
+    else if (delNode->left == nullptr)
+    {
+        if (delNode->parent->left == delNode)
+            delNode->parent->left = delNode->right;
+        else
+            delNode->parent->right = delNode->right;
+
+        delNode->right->parent = delNode->parent;
+    }
+    else if (delNode->right == nullptr)
+    {
+        if (delNode->parent->left == delNode)
+            delNode->parent->left = delNode->left;
+        else
+            delNode->parent->right = delNode->left;
+
+        delNode->left->parent = delNode->parent;
+    }
+    else
+    {
+        Node *cur = delNode->right;
+        while (cur->left != nullptr)
+            cur = cur->left;
+
+        swap(cur, delNode);
+
+        if (delNode->parent->left == delNode)
+            delNode->parent->left = nullptr;
+        else
+            delNode->parent->right = nullptr;
+    }
+    delete (delNode);
+}
+void binarySearchTree::erase(Node *node)
+{
+    if (node->left == nullptr && node->right == nullptr)
+    {
+        if (node->parent->left == node)
+            node->parent->left = nullptr;
+        else
+            node->parent->right = nullptr;
+    }
+    else if (node->left == nullptr)
+    {
+        if (node->parent->left == node)
+            node->parent->left = node->right;
+        else
+            node->parent->right = node->right;
+        node->right->parent = node->parent;
+    }
+    else if (node->right == nullptr)
+    {
+        if (node->parent->left == node)
+            node->parent->left = node->left;
+        else
+            node->parent->right = node->left;
+        node->left->parent = node->parent;
+    }
+    else
+    {
+        Node *cur = node->right;
+        while (cur->left != nullptr)
+            cur = cur->left;
+        swap(cur, node);
+        if (node->parent->left == node)
+            node->parent->left = nullptr;
+        else
+            node->parent->right = nullptr;
+    }
+    delete (node);
+}
+
+void binarySearchTree::print(Node *node)
+{
+    if (node == nullptr)
+        return;
+    print(node->left);
+    cout << node->data << " ";
+    print(node->right);
+}
+
+
+void binarySearchTree::DFS(Node *node)
+{
+    if (node == nullptr)
+        return;
+    cout << node->data << " ";
+    DFS(node->left);
+    DFS(node->right);
+}
+
+void binarySearchTree::BFS(Node *node)
+{
+    if (node == nullptr)
+        return;
+    queue<Node *> q;
+    q.push(node);
     while (!q.empty())
     {
-        node *temp = q.front();
+        Node *cur = q.front();
         q.pop();
-        cout << temp->data << " ";
-        if (temp->left != NULL)
-            q.push(temp->left);
-        if (temp->right != NULL)
-            q.push(temp->right);
+        cout << cur->data << " ";
+        if (cur->left != nullptr)
+            q.push(cur->left);
+        if (cur->right != nullptr)
+            q.push(cur->right);
     }
 }
-void BinarySearchTree::insert(int data)
-{
-    node *newNode = new node(data);
-    if (root == NULL)
-    {
-        root = newNode;
-        return;
-    }
-    node *temp = root;
-    while (temp != NULL)
-    {
-        if (data < temp->data)
-        {
-            if (temp->left == NULL)
-            {
-                temp->left = newNode;
-                newNode->parent = temp;
-                return;
-            }
-            temp = temp->left;
-        }
-        else
-        {
-            if (temp->right == NULL)
-            {
-                temp->right = newNode;
-                newNode->parent = temp;
-                return;
-            }
-            temp = temp->right;
-        }
-    }
-}
+
 int main()
 {
-    BinarySearchTree BST;
-    BST.insert(4);
-    BST.insert(2);
-    BST.insert(6);
-    BST.insert(1);
-    BST.insert(3);
-    BST.insert(5);
-    BST.insert(7);
-    cout << "Insert : 4 2 6 1 3 5 7" << endl;
-    cout << "DFS    : ";
-    BST.DFS(BST.root);
+    binarySearchTree *bst = new binarySearchTree();
+    cout << "Insert: 5 2 3 4 1 6 7" << endl;
+    bst->insert(5);
+    bst->insert(2);
+    bst->insert(3);
+    bst->insert(4);
+    bst->insert(1);
+    bst->insert(6);
+    bst->insert(7);
+
+    cout << "DFS: ";
+    bst->DFS(bst->getRoot());
     cout << endl;
-    cout << "BFS    : ";
-    BST.BFS(BST.root);
+
+    cout << "BFS: ";
+    bst->BFS(bst->getRoot());
     cout << endl;
-    cout << "Display: ";
-    BST.Display(BST.root);
+
+    cout << "PRT: ";
+    bst->print(bst->getRoot());
     cout << endl;
+
+    cout << "Erase 3:";
+    bst->erase(3);
+    bst->print(bst->getRoot());
+    cout << endl;
+
+    cout << "Insert 3: ";
+    bst->insert(3);
+    bst->print(bst->getRoot());
+    cout << endl;
+
+    cout << "Insert 3: ";
+    bst->insert(3);
+    bst->print(bst->getRoot());
+    cout << endl;
+
+    cout << "Erase 3: ";
+    bst->erase(bst->find(3));
+    bst->print(bst->getRoot());
+    cout << endl;
+
     return 0;
 }
