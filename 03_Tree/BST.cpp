@@ -9,9 +9,9 @@ public:
     node *parent;
     node *left;
     node *right;
-    node(int d)
+    node(int data)
     {
-        this->data = d;
+        this->data = data;
         this->parent = NULL;
         this->left = NULL;
         this->right = NULL;
@@ -107,18 +107,18 @@ void BinarySearchTree::insert(int data)
 int main()
 {
     BinarySearchTree BST;
-    BST.insert(13);
-    BST.insert(7);
+    BST.insert(4);
     BST.insert(2);
-    BST.insert(20);
-    BST.insert(30);
-    BST.insert(15);
-    BST.insert(11);
-    cout << "Insert : 13 7 2 20 30 15 11" << endl;
-    cout << "DFS: ";
+    BST.insert(6);
+    BST.insert(1);
+    BST.insert(3);
+    BST.insert(5);
+    BST.insert(7);
+    cout << "Insert : 4 2 6 1 3 5 7" << endl;
+    cout << "DFS    : ";
     BST.DFS(BST.root);
     cout << endl;
-    cout << "BFS: ";
+    cout << "BFS    : ";
     BST.BFS(BST.root);
     cout << endl;
     cout << "Display: ";
