@@ -6,9 +6,11 @@ using namespace std;
 
 class Gragh
 {
-public:
+private:
     vector<vector<int>> adj;
     vector<bool> visited;
+
+public:
     Gragh(int size = 0)
     {
         adj = vector<vector<int>>(size, vector<int>());
@@ -144,7 +146,7 @@ public:
 int main()
 {
     Gragh *G = new Gragh();
-    
+
     cout << "Add Edge:" << endl;
     G->add_edge(2, 5);
     G->add_edge(1, 3);
