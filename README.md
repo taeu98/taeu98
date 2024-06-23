@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-<a href="https://github.com/taeu98/README.md">다른 리포지토리의 README.md 보기</a>
+<a href="https://github.com/taeu98/blob/main/README.md">다른 리포지토리의 README.md 보기</a>
 <!--
 **taeu98/taeu98** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
