@@ -1,6 +1,5 @@
 ## Hi there 👋
 
-- [Home](https://github.com/taeu98/taeu98/wiki/Home)
 <!--
 **taeu98/taeu98** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
@@ -15,3 +14,5 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+- [Home](https://github.com/taeu98/taeu98/wiki/Home)
