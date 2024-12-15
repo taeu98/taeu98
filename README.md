@@ -18,4 +18,4 @@ Here are some ideas to get you started:
 # 정리노트
 ## Unity
 1. [설치 (Fira_Code, VSC, Unity_Hub)](./posts/Unity/01_시작하기/01_설치.md)
-2. [Unity 시작하기기](./posts/Unity/01_시작하기/02_Unity_시작하기.md)
+2. [Unity 시작하기](./posts/Unity/01_시작하기/02_Unity_시작하기.md)
